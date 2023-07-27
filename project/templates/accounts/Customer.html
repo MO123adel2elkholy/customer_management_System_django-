@@ -1,0 +1,81 @@
+{% extends 'accounts/home.html'%}
+
+{% block content %}
+<div class ="container ">
+    <div class="card" style="text-align:center;">
+  <div class="card-body">
+    <div class="card text-white bg-info mb-3" style="width:500px; display:inline-block;">
+   <h2><div class="card-header">Customer  </div></h2>
+  <div class="card-body">
+    <div class="d-grid gap-2" >
+  <a class="btn btn-outline-primary"  role="button" href="#">Customer Update </a>
+  <a class="btn btn-outline-danger" role="button" href="#">Customer Delete </a>
+         <a class="btn btn-outline-warning" role="button" href="{% url 'create_order' customer.id %}">Place  Order  </a>
+</div>
+
+  </div>
+</div>
+    <div  class="card text-white bg-info mb-3" style="width:500px; display:inline-block;">
+   <h2><div class="card-header">Contact Info</div></h2>
+  <div class="card-body">
+      <div class="d-grid gap-2" >
+
+        <h4>  <label style="color:black;"> Name : {{customer.name}}</label> </h4>
+         <h4> <label style="color:black;"> Email : {{customer.email}}   </label></h4>
+         <h4> <label style="color:black;"> Phone : {{customer.phone}}</label> </h4>
+
+</div>
+  </div>
+</div>
+  </div>
+</div>
+ <br>
+  <hr>
+  <br>
+
+
+    <br>
+   <div class="card">
+  <div class="card-body">
+      <form action="" method="get">
+          {{myfilter.form}}
+<button class="btn btn-primary" type="submit" >search </button>
+      </form>
+  </div>
+</div>
+    <br>
+ <br>
+  <hr>
+  <br>
+    <div class="card">
+  <div class="card-body">
+
+<table class="table">
+  <thead class="thead-dark ">
+  </thead>
+  <tbody>
+    <tr>
+      <th >Product</th>
+        <th> Note </th>
+      <th >Date Order </th>
+      <th>Status </th>
+      <th>UpDate</th>
+      <th>remove</th>
+    </tr>
+    {% for ord in  orders %}
+    <tr>
+      <td> {{ord.product}}</td>
+        <td> {{ord.note}}</td>
+      <td>{{ord.created}}</td>
+      <td>{{ord.status}}</td>
+   <td><a href="{% url 'update_order' ord.id  %}" class="btn btn-primary btn-lg " tabindex="-1" role="button" aria-disabled="true">update</a></td>
+      <td><a href="{% url 'delete_order' ord.id  %}" class="btn btn-danger btn-lg " tabindex="-1" role="button" aria-disabled="true">Delete</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+  </div>
+</div>
+</div>
+<br>
+{% endblock  %}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LOGIN</title>
+    <style>
+        .one{background-color:cyan;height:60px;color:#000}
+         form{width:220px; height:300px;background-color:cyan; margin-left:500px;border-radius:10%; margin-top:30px;cd}
+         label{padding-left:20px; margin-top:10px;color:#000;}
+         input{margin-left:20px; background-color:black; color:#fff;}
+         .submit{background-color:green; color:#000; margin-left:75px;}
+         .submit:hover{background-color:red;}
+         body{background-color:black;}
+          a{text-decoration:none;
+          border:2px solid cyan;
+          background-color:cyan;
+          margin-top:30px;
+          margin-left:550px;
+          color:black;
+          display:block;
+          width:70px;
+          padding-left:20px;
+          }
+         a:hover{background-color:red;}}
+    </style>
+</head>
+<body>
+<div class="one"><h1 style="text-align:center; padding-top:15px;">LOGIN</h1></div>
+<br>
+<form method="post" action="{%url 'login_backend'%}">
+    {%csrf_token%}
+    <br>
+   <div style="margin-top:20px;">
+       <br>
+    <b><label>UserNAME : </label>
+    <input type="text" name="user_name"><br>
+    <label>Password: </label>
+    <input type="password" name="password"></b>
+    <br>
+    <br>
+    <input class='submit' type="submit" value="login ">
+    <br>
+       <small style="display:block;">
+           already have an account? <a href="{% url 'register' %}" >
+           signup </a></small>
+
+        <div>
+            {% for m in messages%}
+            {{m}}
+            {% endfor %}
+        </div>
+   </div>
+</form>
+</body>
+</html>

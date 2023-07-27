@@ -1,0 +1,110 @@
+{% extends 'accounts/home.html'%}
+{%load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+{% block content %}
+ <h1>
+        Customer Dashboard
+    </h1>
+
+<div class="container">
+
+  <div class="card" style="text-align :center ; ">
+  <div class="card-body">
+     <div class="card text-white bg-info mb-3" style="width: 300px; display:inline-block;">
+   <h4><div class="card-header">Total Orders </div></h4>
+  <div class="card-body">
+    <h5 class="card-title">{{total_order}}</h5>
+  </div>
+</div>
+  <div class="card text-white bg-info mb-3" style="width: 300px; display:inline-block;">
+   <h4><div class="card-header">Order Delivered </div></h4>
+  <div class="card-body">
+    <h5 class="card-title">{{ delvired }}</h5>
+
+  </div>
+</div>
+  <div class="card text-white bg-info mb-3" style="width: 300px; display:inline-block;">
+  <h4><div class="card-header">Order Panding </div></h4>
+  <div class="card-body">
+    <h5 class="card-title">{{pending}}</h5>
+  </div>
+</div>
+  </div>
+</div>
+  <br>
+  <hr>
+  <br>
+
+<div class="card">
+  <div class="card-body">
+    <h3> Customer </h3>
+<table class="table">
+  <thead class="thead-dark ">
+    <tr>
+      <div class="d-grid gap-2">
+  <a class="btn btn-primary" role="button" href="#">Create Customer </a>
+</div>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+
+      <th scope="row"> Customer </th>
+      <th scope="row"> Phone </th>
+      <th scope="row"> View </th>
+    </tr>
+    {% for c in customers %}
+    <tr>
+      <td >{{c.name}}</td>
+      <td>{{c.phone}}</td>
+      <td><a href="{% url 'customer' c.id %}" class="btn btn-info btn-lg " tabindex="-1" role="button" aria-disabled="true">View</a></td>
+    </tr>
+   {% endfor %}
+  </tbody>
+</table>
+  </div>
+</div>
+
+
+<br>
+  <hr>
+  <br>
+  <div class="card">
+  <div class="card-body">
+      <h3> Last 5 Orders  </h3>
+<table class="table">
+  <thead class="thead-dark ">
+    <tr>
+        <div class="d-grid gap-2">
+  <a class="btn btn-primary" role="button" href="#">Create Order  </a>
+</div>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Preduct</th>
+      <th >Data Order </th>
+      <th>Status </th>
+      <th>UpDate</th>
+      <th>remove</th>
+    </tr>
+  {% for or in order %}
+    <tr>
+      <td >{{or.product}}</td>
+      <td >{{or.created}}</td>
+      <td>{{or.status}}</td>
+     <td><a href="{% url 'update_order' or.id  %}" class="btn btn-primary btn-lg " tabindex="-1" role="button" aria-disabled="true">update</a></td>
+      <td><a href="{% url 'delete_order' or.id  %}" class="btn btn-danger btn-lg " tabindex="-1" role="button" aria-disabled="true">Delete</a></td>
+    </tr>
+   {% endfor %}
+  </tbody>
+</table>
+  </div>
+</div>
+<br>
+  <hr>
+  <br>
+</div>
+
+{% endblock  %}

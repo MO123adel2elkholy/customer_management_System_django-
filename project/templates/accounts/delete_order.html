@@ -1,0 +1,38 @@
+{% extends 'accounts/home.html'%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>crm</title>
+</head>
+{% block content %}
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+
+
+    <div class="card text-white bg-info mb-3" style="width:500px; display:inline-block;">
+   <h2><div class="card-header">Customer  </div></h2>
+  <div class="card-body">
+    <div class="d-grid gap-2" >
+      <p> are you sure you want to delete this "{{item}}"</p>
+<form action="{% url 'delete_order' item.id  %}" method="post">
+    {%csrf_token%}
+<a class="btn btn-danger" role="button" href="{% url 'dashboard' %}">cancel </a>
+    <br>
+    <br>
+    <input type="submit" value="Confirm" class="btn btn-primary"  >
+</form>
+</div>
+
+  </div>
+</div>
+              </div>
+        </div>
+</div>
+
+
+</body>
+</html>
+{% endblock content %}

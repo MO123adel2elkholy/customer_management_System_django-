@@ -1,0 +1,19 @@
+{% extends 'accounts/home.html'%}
+{% block content %}
+<div class="one" style="background-color:blue;height:60px;color:#000;">
+    <h1 style="text-align:center; padding-top:15px;"> User Registeration </h1></div>
+<form action="" method="post" style="background-color:blue;  margin-top:30px;  margin-bottom:50px; width:220px; margin-left:500px;
+    padding-left:20px;   border-radius: 25px; ">
+    {%csrf_token%}
+    {%for field in form %}
+    {{field.label}}
+    {{field}}
+    <hr>
+    {% endfor %}
+    <input type="submit" value="Register" style="background-color:red; color:#000; margin-left:50px;">
+    <small style="display:block;">already have an account?</small>
+    <a href="{% url 'login' %}" style="color:gold; display:block; text-decoration:none;"> login </a>
+     {{form.errors}}
+</form>
+
+{% endblock content %}

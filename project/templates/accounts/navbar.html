@@ -1,0 +1,36 @@
+
+{%load static %}
+<style>
+        ul {
+            list-style:none;
+            padding-left:0;
+        }
+    </style>
+<nav class="navbar navbar-expand-lg bg-info">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"> CRM </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      {% if request.user.is_staff %}
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link " href="{% url 'dashboard'%}">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'products'%}">Products</a>
+        </li>
+        {% endif %}
+        {% if not request.user.is_staff %}
+        <li class="nav-item"  style="list-style:none;">
+          <a class="nav-link" href="{% url 'account_setting'%}">settings</a>
+        </li>
+        {% endif %}
+      </ul>
+
+    </div>
+  </div>
+  <span>Hello{{request.user}}</span >
+  <span><a href="{% url 'logout'%}" style="display:inline-block">logout</a></span>
+</nav>
